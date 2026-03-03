@@ -1,0 +1,333 @@
+:root {
+    --primary-color: #667eea;
+    --primary-dark: #764ba2;
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --card-border-radius: 20px;
+    --transition-speed: 0.3s;
+}
+
+body {
+    background-color: var(--bs-body-bg);
+    font-family: 'Inter', sans-serif;
+    transition: background-color var(--transition-speed);
+    min-height: 100vh;
+}
+
+/* THỐNG KÊ */
+.stat-card {
+    background: var(--bs-card-bg);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all var(--transition-speed);
+}
+
+.stat-card.stat-clickable {
+    cursor: pointer;
+}
+
+.stat-card.stat-clickable:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary-color);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.15);
+}
+
+.stat-card.active {
+    border-color: var(--primary-color);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.2);
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+}
+
+.stat-title {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 10px;
+    transition: color var(--transition-speed);
+}
+
+.stat-card.active .stat-title {
+    color: var(--primary-color);
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* NAVBAR & SEARCH */
+.search-container {
+    position: relative;
+    max-width: 400px;
+    width: 100%;
+}
+
+.search-container i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+.search-input {
+    padding-left: 45px;
+    border-radius: 50px;
+    border: 2px solid transparent;
+    background: var(--bs-secondary-bg);
+    transition: all var(--transition-speed);
+}
+
+.search-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.15);
+}
+
+/* GRID - 4 cái card mỗi hàng */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+@media (min-width: 1200px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 767px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* CARD BOX */
+.card-box {
+    background: var(--bs-card-bg);
+    border-radius: var(--card-border-radius);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all var(--transition-speed) ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Khi di chuột vào sẽ đậm lên và đổi màu */
+.card-box:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+}
+
+.card-header-custom {
+    padding: 15px;
+    background: rgba(102, 126, 234, 0.05);
+    display: flex;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.tool-title {
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tool-title i {
+    font-size: 1.3rem;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* BODY & IFRAME */
+.card-body-custom {
+    position: relative;
+    height: 300px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.tool-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    transform: scale(0.98);
+    transform-origin: center;
+}
+
+/* FOOTER NÚT BẤM */
+.card-footer-custom {
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    background: var(--bs-card-bg);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.btn-group-custom {
+    display: flex;
+    gap: 20px;
+}
+
+.btn-tool {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 1.2rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-tool:hover {
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+.btn-tool.text-warning {
+    color: #ffc107 !important;
+}
+
+.btn-tool.text-warning:hover {
+    color: #ffb300 !important;
+}
+
+/* THEME & UTILS */
+.theme-toggle {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bs-secondary-bg);
+    border: none;
+    transition: all var(--transition-speed);
+}
+
+.theme-toggle:hover {
+    background: var(--primary-gradient);
+    color: white;
+    transform: rotate(20deg);
+}
+
+.loader-container {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bs-card-bg);
+    z-index: 1;
+    transition: opacity 0.5s ease;
+}
+
+/* NO RESULTS MESSAGE */
+#noResults {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hiệu ứng xuất hiện cho Card */
+.card-box {
+    animation: slideUp 0.4s ease forwards;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Toast Notification */
+.toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.custom-toast {
+    background: var(--primary-gradient);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+    animation: fadeInRight 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* Đảm bảo toàn bộ trang web chiếm hết chiều cao màn hình */
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bs-body-bg);
+    font-family: 'Inter', sans-serif;
+    transition: background-color var(--transition-speed);
+}
+
+/* Footer style */
+.footer-simple {
+    /* Không cần thêm màu thủ công vì đã dùng class Bootstrap bg-body-tertiary */
+    transition: background-color var(--transition-speed), border-color var(--transition-speed);
+}
