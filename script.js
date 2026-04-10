@@ -15,16 +15,21 @@ const TOOLS_CONFIG = [
     {
         id: 'tool3',
         name: 'Card Flip Memory Helper',
-        icon: 'bi-suit-heart-fill',
+        icon: 'bi-controller',
         url: 'https://baam123.github.io/Card-Flip-Memory-Helper/'
     },
     {
         id: 'tool4',
         name: 'QR Generator',
-        icon: 'bi-suit-heart-fill',
-        icon: 'bi-code-slash',
+        icon: 'bi-qr-code-scan',
         url: 'https://baam123.github.io/QR-Generator/'
-    }
+    },
+    {
+        id: 'tool5',
+        name: 'Food List',
+        icon: 'bi-fork-knife',
+        url: 'https://baam123.github.io/Food-List/'
+    },
 ];
 
 // Biến trạng thái toàn cục
