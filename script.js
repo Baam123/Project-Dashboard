@@ -1,4 +1,3 @@
-/* 1. CẤU HÌNH DỮ LIỆU TOOLS */
 const TOOLS_CONFIG = [
     {
         id: 'tool1',
@@ -32,10 +31,8 @@ const TOOLS_CONFIG = [
     },
 ];
 
-// Biến trạng thái toàn cục
 let currentFilter = 'all';
 
-/* 2. CÁC HÀM TIỆN ÍCH */
 const hideLoader = (iframe) => {
     const loader = iframe.previousElementSibling;
     if (loader) {
@@ -47,14 +44,12 @@ const hideLoader = (iframe) => {
 const getStorage = (key) => JSON.parse(localStorage.getItem(key) || '[]');
 const setStorage = (key, value) => localStorage.setItem(key, JSON.stringify(value));
 
-/* 3. HÀM RENDER CHÍNH (Kết hợp Search & Filter) */
 function renderDashboard() {
     const grid = document.getElementById('toolsGrid');
     const searchTerm = document.getElementById('toolSearch').value.toLowerCase();
     const favorites = getStorage('favorites');
     const recent = getStorage('recentTools');
 
-    // Lọc dữ liệu
     let filteredData = TOOLS_CONFIG.filter(tool => {
         const matchesSearch = tool.name.toLowerCase().includes(searchTerm);
         let matchesFilter = true;
@@ -65,12 +60,10 @@ function renderDashboard() {
         return matchesSearch && matchesFilter;
     });
 
-    // Nếu lọc theo "Recent", sắp xếp theo thứ tự mới nhất dùng lên đầu
     if (currentFilter === 'recent') {
         filteredData.sort((a, b) => recent.indexOf(a.id) - recent.indexOf(b.id));
     }
 
-    // Hiển thị kết quả
     document.getElementById('noResults').style.display = filteredData.length ? 'none' : 'block';
 
     grid.innerHTML = filteredData.map(tool => {
@@ -110,7 +103,6 @@ function renderDashboard() {
     updateStats();
 }
 
-/* 4. XỬ LÝ SỰ KIỆN */
 function initEvents() {
     // Theme toggle
     const themeBtn = document.getElementById('themeBtn');
@@ -121,10 +113,8 @@ function initEvents() {
         themeBtn.querySelector('i').className = newTheme === 'light' ? 'bi bi-moon-stars-fill' : 'bi bi-sun-fill';
     });
 
-    // Search input
     document.getElementById('toolSearch').addEventListener('input', renderDashboard);
 
-    // Filter cards
     document.querySelectorAll('.stat-clickable').forEach(card => {
         card.addEventListener('click', function () {
             document.querySelectorAll('.stat-clickable').forEach(c => c.classList.remove('active'));
@@ -134,7 +124,6 @@ function initEvents() {
         });
     });
 
-    // Delegation cho các nút bên trong Card (để không phải gán lại mỗi lần render)
     document.getElementById('toolsGrid').addEventListener('click', (e) => {
         const btnFav = e.target.closest('.btn-favorite');
         const btnFull = e.target.closest('.btn-fullscreen');
@@ -156,11 +145,11 @@ function initEvents() {
             }
             setStorage('favorites', favs);
             renderDashboard();
-            showToast(msg); // <--- Gọi thông báo ở đây
+            showToast(msg); 
         }
 
         if (btnFull) {
-            showToast("Đang mở toàn màn hình..."); // <--- Thêm thông báo
+            showToast("Đang mở toàn màn hình..."); 
             markRecent(toolId);
             const iframe = card.querySelector('iframe');
             if (iframe.requestFullscreen) iframe.requestFullscreen();
@@ -184,7 +173,6 @@ function updateStats() {
     document.getElementById('totalRecent').textContent = getStorage('recentTools').length;
 }
 
-// Khởi tạo trang
 document.addEventListener('DOMContentLoaded', () => {
     // Set theme ban đầu
     const savedTheme = localStorage.getItem('theme') || 'light';
@@ -196,9 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderDashboard();
 });
 
-// Toast Notification
 function showToast(message) {
-    // Tạo container nếu chưa có
     let container = document.querySelector('.toast-container');
     if (!container) {
         container = document.createElement('div');
@@ -206,13 +192,11 @@ function showToast(message) {
         document.body.appendChild(container);
     }
 
-    // Tạo thông báo
     const toast = document.createElement('div');
     toast.className = 'custom-toast';
     toast.innerHTML = `<i class="bi bi-check-circle-fill me-2"></i> ${message}`;
 
     container.appendChild(toast);
 
-    // Tự xóa sau 3 giây
     setTimeout(() => toast.remove(), 3000);
 }

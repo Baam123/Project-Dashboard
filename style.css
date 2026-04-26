@@ -13,7 +13,6 @@ body {
     min-height: 100vh;
 }
 
-/* THỐNG KÊ */
 .stat-card {
     background: var(--bs-card-bg);
     border-radius: 15px;
@@ -57,7 +56,6 @@ body {
     color: var(--primary-color);
 }
 
-/* NAVBAR & SEARCH */
 .search-container {
     position: relative;
     max-width: 400px;
@@ -85,7 +83,6 @@ body {
     box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.15);
 }
 
-/* GRID - 4 cái card mỗi hàng */
 .dashboard-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -116,7 +113,6 @@ body {
     }
 }
 
-/* CARD BOX */
 .card-box {
     background: var(--bs-card-bg);
     border-radius: var(--card-border-radius);
@@ -128,7 +124,6 @@ body {
     flex-direction: column;
 }
 
-/* Khi di chuột vào sẽ đậm lên và đổi màu */
 .card-box:hover {
     transform: translateY(-5px);
     border-color: var(--primary-color);
@@ -157,7 +152,6 @@ body {
     background-clip: text;
 }
 
-/* BODY & IFRAME */
 .card-body-custom {
     position: relative;
     height: 300px;
@@ -173,7 +167,6 @@ body {
     transform-origin: center;
 }
 
-/* FOOTER NÚT BẤM */
 .card-footer-custom {
     padding: 12px;
     display: flex;
@@ -210,7 +203,6 @@ body {
     color: #ffb300 !important;
 }
 
-/* THEME & UTILS */
 .theme-toggle {
     cursor: pointer;
     width: 40px;
@@ -241,7 +233,6 @@ body {
     transition: opacity 0.5s ease;
 }
 
-/* NO RESULTS MESSAGE */
 #noResults {
     animation: fadeIn 0.3s ease;
 }
@@ -258,7 +249,6 @@ body {
     }
 }
 
-/* Hiệu ứng xuất hiện cho Card */
 .card-box {
     animation: slideUp 0.4s ease forwards;
 }
@@ -275,7 +265,6 @@ body {
     }
 }
 
-/* Toast Notification */
 .toast-container {
     position: fixed;
     bottom: 20px;
@@ -312,7 +301,6 @@ body {
     }
 }
 
-/* Đảm bảo toàn bộ trang web chiếm hết chiều cao màn hình */
 html,
 body {
     height: 100%;
@@ -326,8 +314,6 @@ body {
     transition: background-color var(--transition-speed);
 }
 
-/* Footer style */
 .footer-simple {
-    /* Không cần thêm màu thủ công vì đã dùng class Bootstrap bg-body-tertiary */
     transition: background-color var(--transition-speed), border-color var(--transition-speed);
 }
