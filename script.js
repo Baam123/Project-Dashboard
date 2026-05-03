@@ -33,13 +33,30 @@ const TOOLS_CONFIG = [
 
 let currentFilter = 'all';
 
-const hideLoader = (iframe) => {
+function hideLoader(iframe) {
     const loader = iframe.previousElementSibling;
     if (loader) {
         loader.style.opacity = '0';
         setTimeout(() => loader.style.display = 'none', 500);
     }
-};
+}
+
+function showToast(message) {
+    let container = document.querySelector('.toast-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.className = 'toast-container';
+        document.body.appendChild(container);
+    }
+
+    const toast = document.createElement('div');
+    toast.className = 'custom-toast';
+    toast.innerHTML = `<i class="bi bi-check-circle-fill me-2"></i> ${message}`;
+
+    container.appendChild(toast);
+
+    setTimeout(() => toast.remove(), 3000);
+}
 
 const getStorage = (key) => JSON.parse(localStorage.getItem(key) || '[]');
 const setStorage = (key, value) => localStorage.setItem(key, JSON.stringify(value));
@@ -183,20 +200,3 @@ document.addEventListener('DOMContentLoaded', () => {
     initEvents();
     renderDashboard();
 });
-
-function showToast(message) {
-    let container = document.querySelector('.toast-container');
-    if (!container) {
-        container = document.createElement('div');
-        container.className = 'toast-container';
-        document.body.appendChild(container);
-    }
-
-    const toast = document.createElement('div');
-    toast.className = 'custom-toast';
-    toast.innerHTML = `<i class="bi bi-check-circle-fill me-2"></i> ${message}`;
-
-    container.appendChild(toast);
-
-    setTimeout(() => toast.remove(), 3000);
-}
